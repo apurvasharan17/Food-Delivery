@@ -6,7 +6,7 @@ import Shimmer from "./Shimmer";
 const Body=()=>{
 
     const [resList,setResList]=useState([]);
-
+    const [filteredRestaurant,setFilterRestaurant]=useState([]);
     const [searchText, setSearchText]=useState("");
 
       useEffect(()=>{
@@ -14,10 +14,13 @@ const Body=()=>{
       },[]);
 
       const fetchData=async ()=>{
-        const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        //const data= await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.96340&lng=77.58550&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        const data=await fetch("https://cors-handlers.vercel.app/api/?url=https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D12.96340%26lng%3D77.58550%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING");
         const json=await data.json();
+        console.log(json);
         console.log(json.data.cards);
         setResList(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        setFilterRestaurant(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
       }
       //conditional rendering
     //   if(resList.length==0){
@@ -33,9 +36,9 @@ const Body=()=>{
                             }}/>
                             <button onClick={()=>{
                                // console.log(searchText);
-                                const filteredRestaurant=resList.filter((res)=>res.info.name.includes(searchText));
+                                const filteredRestaurant=resList.filter((res)=>res.info.name.toLowerCase().includes(searchText.toLowerCase()));
                                 console.log(filteredRestaurant);
-                                setResList(filteredRestaurant);
+                                setFilterRestaurant(filteredRestaurant);
                                        
                             }}>Search</button></div>
                         <button className="filter-btn" onClick={()=>{
@@ -49,7 +52,7 @@ const Body=()=>{
                     </div>
                     <div className="res-container">
                     {
-                            resList.map((restaurant)=>(
+                            filteredRestaurant.map((restaurant)=>(
                                     <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
                             ))
                     }
