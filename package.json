@@ -1,0 +1,31 @@
+{
+  "name": "reactwork",
+  "version": "1.0.0",
+  "description": "this is demo react work",
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build  src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apurvasharan17/react-works.git"
+  },
+  "author": "Apurva SHaran",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apurvasharan17/react-works/issues"
+  },
+  "homepage": "https://github.com/apurvasharan17/react-works#readme",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
