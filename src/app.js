@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Error from "./components/Error.js";
+import RestaurantMenu from "./components/RestaurantMenu.js";
 
 // const styleCard={
 //         backgroundColor:"#f0f0f0",
@@ -34,7 +35,10 @@ const appRouter=createBrowserRouter([
                         },{
                                 path:"/contact",
                                 element:<Contact/>,
-                        },
+                        },{
+                                path:"/restaurants/:resId",
+                                element:<RestaurantMenu/>
+                        }
                 ]
                 ,
                 errorElement:<Error/>,
